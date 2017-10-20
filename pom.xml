@@ -34,9 +34,9 @@
     <description>Maven archetype for initial content</description>
 
     <scm>
-        <connection>scm:svn:http://svn.apache.org/repos/asf/sling/trunk/tooling/maven/archetypes/initial-content</connection>
-        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/sling/trunk/tooling/maven/archetypes/initial-content</developerConnection>
-        <url>http://svn.apache.org/viewvc/sling/trunk/tooling/maven/archetypes/initial-content</url>
+        <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-initial-content-archetype.git</conncetion>
+        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-initial-content-archetype.git</developerConnection>
+        <url>https://gitbox.apache.org/repos/asf?p=sling-initial-content-archetype.git</url>
     </scm>
 
     <build>
