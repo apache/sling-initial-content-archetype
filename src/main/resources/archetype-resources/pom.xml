@@ -21,29 +21,40 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>\${groupId}</groupId>
     <artifactId>\${artifactId}</artifactId>
-    <packaging>bundle</packaging>
     <version>\${version}</version>
     <name>\${artifactId}</name>
     <description>\${groupId} - \${artifactId}</description>
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <version>${bundleplugin.version}</version>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bnd-maven-plugin</artifactId>
+                <version>${bndplugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>run-bnd</id>
+                        <goals>
+                            <goal>bnd-process</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <instructions>
-                        <!-- Stop bnd complaining about unused Private-Package instructions -->
-                        <Private-Package></Private-Package>
-                        <Sling-Nodetypes>
-                            SLING-INF/nodetypes/nodetypes.cnd
-                        </Sling-Nodetypes>
-                        <Sling-Initial-Content>
-                            SLING-INF/scripts;overwrite:=true;uninstall:=true;path:=/apps/my/node,
-                            SLING-INF/content;overwrite:=true;uninstall:=true;path:=/content
-                        </Sling-Initial-Content>
-                    </instructions>
+                    <bnd><![CDATA[
+Sling-Nodetypes: SLING-INF/nodetypes/nodetypes.cnd
+Sling-Initial-Content: \
+  SLING-INF/scripts;overwrite:=true;uninstall:=true;path:=/apps/my/node,\
+  SLING-INF/content;overwrite:=true;uninstall:=true;path:=/content
+                    ]]></bnd>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${jarplugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>\${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
                 </configuration>
             </plugin>
              <plugin>
